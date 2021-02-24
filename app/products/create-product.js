@@ -66,7 +66,7 @@ jQuery(function($){
 
         // отправка данных формы в API
         $.ajax({
-            url: "http://rest-api/api/product/create.php",
+            url: "api/product/create.php",
             type : "POST",
             contentType : 'application/json',
             data : form_data,

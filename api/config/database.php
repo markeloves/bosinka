@@ -6,6 +6,9 @@ class Database {
     private $db_name = "ti_81_12";
     private $username = "ti_81_12";
     private $password = "ti_81_12";
+    // private $db_name = "ti_81_14";
+    // private $username = "ti_81_14";
+    // private $password = "ti_81_14";
     public $conn;
 
     // получаем соединение с БД

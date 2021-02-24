@@ -8,7 +8,7 @@ jQuery(function($){
 function showProducts(){
 
     // получаем список товаров из API
-    $.getJSON("http://rest-api/api/product/read.php", function(data){
+    $.getJSON("api/product/read.php", function(data){
 
         // HTML для перечисления товаров
         readProductsTemplate(data, "");
