@@ -17,7 +17,8 @@ jQuery(function($){
     $("#app").html(app_html);
 
 });
-
+ 
+// изменение заголовка страницы
 function changePageTitle(page_title){
 
     // измение заголовка страницы
@@ -26,7 +27,8 @@ function changePageTitle(page_title){
     // измение заголовка вкладки браузера
     document.title=page_title;
 }
-
+ 
+// функция для создания значений формы в формате json
 $.fn.serializeObject = function() {
     var o = {};
     var a = this.serializeArray();

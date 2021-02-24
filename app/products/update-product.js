@@ -5,7 +5,8 @@ jQuery(function($){
 
         // получаем ID товара
         var id = $(this).attr('data-id');
-        $.getJSON("http://rest-api/api/product/read_one.php?id=" + id, function(data){
+        // читаем одну запись на основе данного идентификатора товара
+        $.getJSON("http://localhost/rest-api/api/product/read_one.php?id=" + id, function(data){
 
             // значения будут использоваться для заполнения нашей формы
             var name = data.name;
@@ -15,7 +16,7 @@ jQuery(function($){
             var category_name = data.category_name;
 
             // загрузка списка категорий
-            $.getJSON("http://rest-api/api/category/read.php", function(data){
+            $.getJSON("http://localhost/rest-api/api/category/read.php", function(data){
 
                 // строим список выбора
                 // перебор полученного списка данных
@@ -26,62 +27,56 @@ jQuery(function($){
                     if (val.id==category_id) {
                         categories_options_html+=`<option value='` + val.id + `' selected>` + val.name + `</option>`;
                     } else {
-                        categories_options_html+=`<option value='` + val.id + `'>` + val.name + `</option>`;
+                        categories_options_html+=`<option value='` + val.id + `'>` + val.name + `</option>`; 
                     }
                 });
                 categories_options_html+=`</select>`;
 
                 // сохраним html в переменной «update product»
                 var update_product_html=`
-    <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
-        <span class='glyphicon glyphicon-list'></span> Все товары
-    </div>
+                <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
+                    <span class='glyphicon glyphicon-list'></span> Все товары
+                </div>
+                <form id='update-product-form' action='#' method='post' border='0'>
+                    <table class='table table-hover table-responsive table-bordered'>
 
-    <!-- построение формы для изменения товара -->
-    <!-- мы используем свойство 'required' html5 для предотвращения пустых полей -->
-    <form id='update-product-form' action='#' method='post' border='0'>
-        <table class='table table-hover table-responsive table-bordered'>
+                        <tr>
+                            <td>Название</td>
+                            <td><input value=\"` + name + `\" type='text' name='name' class='form-control' required /></td>
+                        </tr>
 
-            <tr>
-                <td>Название</td>
-                <td><input value=\"` + name + `\" type='text' name='name' class='form-control' required /></td>
-            </tr>
+                        <tr>
+                            <td>Цена</td>
+                            <td><input value=\"` + price + `\" type='number' min='1' name='price' class='form-control' required /></td>
+                        </tr>
 
-            <tr>
-                <td>Цена</td>
-                <td><input value=\"` + price + `\" type='number' min='1' name='price' class='form-control' required /></td>
-            </tr>
+                        <tr>
+                            <td>Описание</td>
+                            <td><textarea name='description' class='form-control' required>` + description + `</textarea></td>
+                        </tr>
 
-            <tr>
-                <td>Описание</td>
-                <td><textarea name='description' class='form-control' required>` + description + `</textarea></td>
-            </tr>
+                        <tr>
+                            <td>Категория</td>
+                            <td>` + categories_options_html + `</td>
+                        </tr>
 
-            <tr>
-                <td>Категория</td>
-                <td>` + categories_options_html + `</td>
-            </tr>
+                        <tr>
+                            <td><input value=\"` + id + `\" name='id' type='hidden' /></td>
 
-            <tr>
-                <!-- скрытый «идентификатор продукта», чтобы определить, какую запись удалить -->
-                <td><input value=\"` + id + `\" name='id' type='hidden' /></td>
+                            <td>
+                                <button type='submit' class='btn btn-info'>
+                                    <span class='glyphicon glyphicon-edit'></span> Обновить товар
+                                </button>
+                            </td>
+                        </tr>
 
-                <!-- кнопка отправки формы -->
-                <td>
-                    <button type='submit' class='btn btn-info'>
-                        <span class='glyphicon glyphicon-edit'></span> Обновить товар
-                    </button>
-                </td>
-            </tr>
+                    </table>
+                </form>`;
 
-        </table>
-    </form>
-`;
-
-// добавим в «page-content» нашего приложения
+                // добавим в «page-content» нашего приложения
                 $("#page-content").html(update_product_html);
 
-// изменим title страницы
+                // изменим title страницы
                 changePageTitle("Обновление товара");
             });
         });
@@ -95,7 +90,7 @@ jQuery(function($){
 
         // отправка данных формы в API
         $.ajax({
-            url: "http://rest-api/api/product/update.php",
+            url: "http://localhost/rest-api/api/product/update.php",
             type : "POST",
             contentType : 'application/json',
             data : form_data,

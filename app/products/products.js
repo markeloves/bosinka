@@ -65,6 +65,27 @@ function readProductsTemplate(data, keywords){
 
     // конец таблицы
     read_products_html+=`</table>`;
+    // pagination
+    if (data.paging) {
+        read_products_html+="<ul class='pagination pull-left margin-zero padding-bottom-2em'>";
+
+            // первая
+            if(data.paging.first!=""){
+                read_products_html+="<li><a data-page='" + data.paging.first + "'>Первая страница</a></li>";
+            }
+
+            // перебор страниц
+            $.each(data.paging.pages, function(key, val){
+                var active_page=val.current_page=="yes" ? "class='active'" : "";
+                read_products_html+="<li " + active_page + "><a data-page='" + val.url + "'>" + val.page + "</a></li>";
+            });
+
+            // последняя
+            if (data.paging.last!="") {
+                read_products_html+="<li><a data-page='" + data.paging.last + "'>Последняя страница</a></li>";
+            }
+        read_products_html+="</ul>";
+    }
 
     // добавим в «page-content» нашего приложения
     $("#page-content").html(read_products_html);
