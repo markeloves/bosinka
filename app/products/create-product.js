@@ -2,7 +2,7 @@ jQuery(function($){
 
     // показать html форму при нажатии кнопки «создать товар»
     $(document).on('click', '.create-product-button', function(){
-        $.getJSON("http://95.131.149.21:30012/rest-api/api/category/read.php", function(data){
+        $.getJSON("http://localhost/rest-api/api/category/read.php", function(data){
             var categories_options_html=`<select name='category_id' class='form-control'>`;
             $.each(data.records, function(key, val){
                 categories_options_html+=`<option value='` + val.id + `'>` + val.name + `</option>`;
@@ -59,13 +59,13 @@ jQuery(function($){
     });
 
     // будет работать, если создана форма товара
-    $(document).on('submit', '#create-product-form', function() {
+    $(document).on('submit', '#create-product-form', function(){
         // получение данных формы
         var form_data=JSON.stringify($(this).serializeObject());
 
         // отправка данных формы в API
         $.ajax({
-            url: "http://95.131.149.21:30012/rest-api/api/product/create.php",
+            url: "http://localhost/rest-api/api/product/create.php",
             type : "POST",
             contentType : 'application/json',
             data : form_data,

@@ -19,7 +19,7 @@ jQuery(function($){
 });
 
 function showProductsFirstPage(){
-    var json_url="http://95.131.149.21:30012/rest-api/api/product/read_paging.php";
+    var json_url="http://localhost/rest-api/api/product/read_paging.php";
     showProducts(json_url);
 }
 

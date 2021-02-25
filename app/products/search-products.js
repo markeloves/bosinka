@@ -7,7 +7,7 @@ jQuery(function($){
         var keywords = $(this).find(":input[name='keywords']").val();
 
         // получаем данные из API на основе поисковых ключевых слов
-        $.getJSON("http://95.131.149.21:30012/rest-api/api/product/search.php?s=" + keywords, function(data){
+        $.getJSON("http://localhost/rest-api/api/product/search.php?s=" + keywords, function(data){
 
             // шаблон в products.js
             readProductsTemplate(data, keywords);

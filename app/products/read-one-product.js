@@ -5,7 +5,7 @@ jQuery(function($){
         // get product id
         var id = $(this).attr('data-id');
         // чтение записи товара на основе данного идентификатора
-        $.getJSON("http://95.131.149.21:30012/rest-api/api/product/read_one.php?id=" + id, function(data){
+        $.getJSON("http://localhost/rest-api/api/product/read_one.php?id=" + id, function(data){
             // начало html
             var read_one_product_html=`
             <!-- при нажатии будем отображать список товаров -->
