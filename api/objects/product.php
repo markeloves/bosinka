@@ -19,19 +19,26 @@ class Product {
         $this->conn = $db;
     }
 
-    public function read(){
+    // метод read() - получение товаров
+    function read(){
 
-        // выбираем все данные
+        // выбираем все записи
         $query = "SELECT
-                    id, name, description
+                    c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
                 FROM
-                    " . $this->table_name . "
+                    " . $this->table_name . " p
+                    LEFT JOIN
+                        categories c
+                            ON p.category_id = c.id
                 ORDER BY
-                    name";
-    
-        $stmt = $this->conn->prepare( $query );
+                    p.created DESC";
+
+        // подготовка запроса
+        $stmt = $this->conn->prepare($query);
+
+        // выполняем запрос
         $stmt->execute();
-    
+
         return $stmt;
     }
     // метод create - создание товаров
@@ -222,7 +229,6 @@ class Product {
         // вернём значения из базы данных
         return $stmt;
     }
-
     public function count(){
         $query = "SELECT COUNT(*) as total_rows FROM " . $this->table_name . "";
     

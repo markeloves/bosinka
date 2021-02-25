@@ -1,5 +1,4 @@
 jQuery(function($){
-
     // показать список товаров при первой загрузке
     showProductsFirstPage();
 

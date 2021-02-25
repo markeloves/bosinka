@@ -37,6 +37,9 @@ jQuery(function($){
                 <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
                     <span class='glyphicon glyphicon-list'></span> Все товары
                 </div>
+
+                <!-- построение формы для изменения товара -->
+                <!-- мы используем свойство 'required' html5 для предотвращения пустых полей -->
                 <form id='update-product-form' action='#' method='post' border='0'>
                     <table class='table table-hover table-responsive table-bordered'>
 
@@ -61,8 +64,10 @@ jQuery(function($){
                         </tr>
 
                         <tr>
+                            <!-- скрытый «идентификатор продукта», чтобы определить, какую запись удалить -->
                             <td><input value=\"` + id + `\" name='id' type='hidden' /></td>
 
+                            <!-- кнопка отправки формы -->
                             <td>
                                 <button type='submit' class='btn btn-info'>
                                     <span class='glyphicon glyphicon-edit'></span> Обновить товар
@@ -71,7 +76,8 @@ jQuery(function($){
                         </tr>
 
                     </table>
-                </form>`;
+                </form>
+                `;
 
                 // добавим в «page-content» нашего приложения
                 $("#page-content").html(update_product_html);

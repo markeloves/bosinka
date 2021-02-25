@@ -1,6 +1,6 @@
 // html список товаров
 function readProductsTemplate(data, keywords){
-
+    
     var read_products_html=`
         <!-- форма поиска товаров -->
         <form id='search-product-form' action='#' method='post'>
