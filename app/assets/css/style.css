@@ -33,3 +33,5 @@
 .margin-zero { margin:0; }
 .text-align-center { text-align:center; }
 .pagination a { cursor: pointer; }
+.background-body { background-color: wheat; }
+#app {border: 1px solid sienna; margin: 5px; padding-bottom: 50px;}

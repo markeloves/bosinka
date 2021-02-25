@@ -22,7 +22,7 @@ jQuery(function($){
 
                     // отправим запрос на удаление в API / удаленный сервер
                     $.ajax({
-                        url: "http://localhost/rest-api/api/product/delete.php",
+                        url: "http://95.131.149.21:30012/rest-api/api/product/delete.php",
                         type : "POST",
                         dataType : 'json',
                         data : JSON.stringify({ id: product_id }),
