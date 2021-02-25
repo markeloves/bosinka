@@ -2,7 +2,7 @@
 class Database {
 
     // укажите свои учетные данные базы данных
-    private $host = "localhost";
+    private $host = "http://95.131.149.21/repl1";
     private $db_name = "ti_81_12";
     private $username = "ti_81_12";
     private $password = "ti_81_12";
